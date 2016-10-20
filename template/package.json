@@ -23,10 +23,10 @@
   "license": "MIT",
   "dependencies": {
     "express": "5.0.0-alpha.2",
-    "express-vue-builder": "2.0.3",
-    "vue": "2.0.3",
-    "vue-builder": "1.1.5",
-    "vue-server-renderer": "2.0.3"
+    "express-vue-builder": "2.1.x",
+    "vue": "2.0.x",
+    "vue-builder": "1.2.x",
+    "vue-server-renderer": "2.0.x"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
