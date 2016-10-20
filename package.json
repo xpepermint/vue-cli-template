@@ -1,0 +1,25 @@
+{
+  "name": "vue-cli-template",
+  "version": "1.0.0",
+  "description": "A simple Vue.js CLI template supporting server-side and client-side rendering.",
+  "main": "./meta.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xpepermint/vue-cli-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xpepermint/vue-cli-template/issues"
+  },
+  "homepage": "https://github.com/xpepermint/vue-cli-template#readme",
+  "keywords": [
+    "vue",
+    "cli",
+    "template",
+    "ssr",
+    "server",
+    "rendering",
+    "render"
+  ],
+  "author": "Kristijan Sedlak (Xpepermint)",
+  "license": "MIT"
+}
