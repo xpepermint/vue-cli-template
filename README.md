@@ -15,7 +15,7 @@ This is a project template for [vue-cli](https://github.com/vuejs/vue-cli).
 
 ``` bash
 $ npm install -g vue-cli
-$ vue init https://github.com/xpepermint/vue-template my-project
+$ vue init https://github.com/xpepermint/vue-clie-template my-project
 $ cd my-project
 $ npm install
 $ npm run dev
