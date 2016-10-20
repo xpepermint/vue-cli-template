@@ -1,6 +1,6 @@
 # vue-cli-template
 
-> A simple Vue.js CLI template supporting server-side and client-side rendering.
+> A simple Vue.js CLI template for client-side and server-side rendering.
 
 ## Related Projects
 
@@ -15,7 +15,7 @@ This is a project template for [vue-cli](https://github.com/vuejs/vue-cli).
 
 ``` bash
 $ npm install -g vue-cli
-$ vue init https://github.com/xpepermint/vue-clie-template my-project
+$ vue init xpepermint/vue-cli-template my-project
 $ cd my-project
 $ npm install
 $ npm run dev
@@ -23,11 +23,9 @@ $ npm run dev
 
 ### What's Included
 
-- `npm run dev`: Starts the development server which supports client-side rendering, server-side rendering, source maps and hot-reload.
-
 - `npm run build`: Builds the application for production.
 
-- `npm run start`: Starts the production application server.
+- `npm run start`: Starts a production http server or a development server with support for client-side rendering, server-side rendering, source maps and hot-reload.
 
 ## License (MIT)
 
