@@ -27,6 +27,10 @@ $ npm run start
 
 - `npm run start`: Starts a production http server or a development server with support for client-side rendering, server-side rendering, source maps and hot-reload.
 
+### Tutorials
+
+This template represents a minimal [Vue.js](https://github.com/vuejs/vue-cli) application setup. Check the [Vue.js Cheatsheet Book](https://xpepermint.gitbooks.io/vue-js-cheatsheet/content/) for further instructions.
+
 ## License (MIT)
 
 ```
