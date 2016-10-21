@@ -18,11 +18,11 @@
   "author": "Kristijan Sedlak (Xpepermint)",
   "license": "MIT",
   "dependencies": {
-    "babel-runtime": "6.11.6",
+    "babel-runtime": "6.11.x",
     "express": "5.0.0-alpha.2",
     "express-vue-builder": "2.3.x",
     "vue": "2.0.x",
-    "vue-builder": "1.3.x",
+    "vue-builder": "1.4.x",
     "vue-server-renderer": "2.0.x"
   },
   "devDependencies": {
@@ -35,9 +35,10 @@
     "express-vue-dev": "^1.1.2",
     "extract-text-webpack-plugin": "2.0.0-beta.4",
     "file-loader": "^0.9.0",
+    "inline-environment-variables-webpack-plugin": "1.1.x",
     "postcss-cssnext": "^2.8.0",
     "vue-loader": "^9.7.0",
-    "vue-webpack": "^1.3.12",
+    "vue-webpack": "^1.4.0",
     "webpack": "2.1.0-beta.25",
     "webpack-hot-middleware": "^2.13.0",
     "webpack-manifest-plugin": "^1.1.0"
