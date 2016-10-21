@@ -5,13 +5,9 @@
   "main": "./src/index.js",
   "config": {
     "env": "development",
-    "server": {
-      "port": 4444,
-      "host": "127.0.0.1"
-    },
-    "client": {
-      "publicPath": "/"
-    }
+    "serverHost": "127.0.0.1",
+    "serverPort": 4444,
+    "publicPath": "/"
   },
   "scripts": {
     "build": "npm run build:client; npm run build:server;",

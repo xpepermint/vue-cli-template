@@ -13,7 +13,7 @@ exports.Server = class {
   */
 
   constructor(config) {
-    this._config = config;
+    this._config = Object.assign(config);
 
     this._app = null;
     this._server = null;
@@ -27,19 +27,16 @@ exports.Server = class {
     return new Promise((resolve) => {
       if (this._server) return this;
 
-      let config = this._config;
-      let isDev = config.env === 'development';
-      let {port, host} = config.server;
-
       this._app = express();
       this._app.use((req, res, next) => {
-        req.config = config;
+        req.config = this._config;
         next();
       });
-      this._app.use(vueHandler(config));
-      this._app.use(router(config));
+      this._app.use(vueHandler(this._config));
+      this._app.use(router(this._config));
 
-      this._server = this._app.listen(port, host, resolve);
+      let {serverPort, serverHost} = this._config;
+      this._server = this._app.listen(serverPort, serverHost, resolve);
     });
   }
 

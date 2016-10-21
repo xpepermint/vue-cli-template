@@ -11,8 +11,8 @@ exports.assets = express.static('dist/client');
 */
 
 exports.render = (req, res) => {
-  let publicPath = req.config.client.publicPath;
   let page = req.vue.renderToStream();
+  let publicPath = req.config.publicPath;
 
   res.write(`<!DOCTYPE html>`);
 
