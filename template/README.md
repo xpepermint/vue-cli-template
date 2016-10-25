@@ -12,5 +12,8 @@ npm install
 npm run build
 
 # start production server
-npm run start
+npm start
+
+# if you use nodemon in development, prefix the start command with it
+nodemon --exec npm start
 ```

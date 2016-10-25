@@ -1,6 +1,6 @@
 {
   "name": "vue-cli-template",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "A simple Vue.js CLI template supporting server-side and client-side rendering.",
   "main": "./meta.json",
   "repository": {
