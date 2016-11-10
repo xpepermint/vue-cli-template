@@ -6,8 +6,9 @@ exports.router = function (config) {
     mergeParams: true
   });
 
-  router.use('/assets', appRoutes.assets);
-  router.use('*', appRoutes.render);
+  router.use(appRoutes.public);
+  router.use(appRoutes.assets);
+  router.use(appRoutes.render);
 
   return router;
 };

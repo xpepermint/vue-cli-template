@@ -4,6 +4,12 @@ const express = require('express');
 * Returns a middleware for serving precompiled files.
 */
 
+exports.public = express.static('public');
+
+/*
+* Returns a middleware for serving precompiled files.
+*/
+
 exports.assets = express.static('dist/client');
 
 /*
@@ -15,7 +21,6 @@ exports.render = (req, res) => {
   let publicPath = req.config.publicPath;
 
   res.write(`<!DOCTYPE html>`);
-
   page.on('init', () => {
     res.write(`<html lang="en">`);
     res.write(`<head>`);
@@ -25,18 +30,15 @@ exports.render = (req, res) => {
     res.write(`</head>`);
     res.write(`<body>`);
   });
-
   page.on('data', (chunk) => {
     res.write(chunk);
   });
-
   page.on('end', () => {
     res.write(  `<script src="${publicPath}assets/bundle.js"></script>`);
     res.write(`</body>`);
     res.write(`</html>`);
     res.end();
   });
-
   page.on('error', function (error) {
     console.error(error);
     res.status(500).send('Server Error');
