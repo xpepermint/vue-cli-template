@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 
 /*
 * Returns a middleware for serving precompiled files.
@@ -19,10 +18,7 @@ exports.assets = express.static('dist/client');
 
 exports.render = (req, res) => {
   let page = req.vue.renderToStream();
-
   let publicPath = req.config.publicPath;
-  let cssBundlePath = path.join(publicPath, 'bundle.css');
-  let jsBundlePath = path.join(publicPath, 'bundle.js');
 
   res.write(`<!DOCTYPE html>`);
   page.on('init', () => {
@@ -30,7 +26,7 @@ exports.render = (req, res) => {
     res.write(`<head>`);
     res.write(  `<meta charset="utf-8">`);
     res.write(  `<title>Example</title>`);
-    res.write(  `<link href="${cssBundlePath}" rel='stylesheet' type='text/css'>`);
+    res.write(  `<link href="${publicPath}bundle.css" rel='stylesheet' type='text/css'>`);
     res.write(`</head>`);
     res.write(`<body>`);
   });
@@ -38,7 +34,7 @@ exports.render = (req, res) => {
     res.write(chunk);
   });
   page.on('end', () => {
-    res.write(  `<script src="${jsBundlePath}"></script>`);
+    res.write(  `<script src="${publicPath}bundle.js"></script>`);
     res.write(`</body>`);
     res.write(`</html>`);
     res.end();
