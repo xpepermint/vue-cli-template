@@ -26,7 +26,7 @@ exports.render = (req, res) => {
     res.write(`<head>`);
     res.write(  `<meta charset="utf-8">`);
     res.write(  `<title>Example</title>`);
-    res.write(  `<link href="${publicPath}assets/bundle.css" rel='stylesheet' type='text/css'>`);
+    res.write(  `<link href="${publicPath}/bundle.css" rel='stylesheet' type='text/css'>`);
     res.write(`</head>`);
     res.write(`<body>`);
   });
@@ -34,7 +34,7 @@ exports.render = (req, res) => {
     res.write(chunk);
   });
   page.on('end', () => {
-    res.write(  `<script src="${publicPath}assets/bundle.js"></script>`);
+    res.write(  `<script src="${publicPath}/bundle.js"></script>`);
     res.write(`</body>`);
     res.write(`</html>`);
     res.end();

@@ -26,7 +26,7 @@ exports.vueDevServer = function (config) {
     client: build({
       mode: 'client',
       inputFilePath: `${__dirname}/../../app/client-entry.js`,
-      publicPath: `${config.publicPath}assets`
+      publicPath: config.publicPath
     })
   });
 }
