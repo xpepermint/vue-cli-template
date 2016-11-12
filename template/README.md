@@ -8,12 +8,15 @@
 # install dependencies
 npm install
 
-# build for production
+# build for production (creates bundles)
 npm run build
 
-# start production server
+# configure the environment (sets the production mode)
+npm config set {{ name }}:env production
+
+# start the server
 npm start
 
-# if you use nodemon in development, prefix the start command with it
+# use nodemon in development (reloads application when code changes)
 nodemon --exec npm start
 ```
