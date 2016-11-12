@@ -16,5 +16,5 @@
       "label": "Author"
     }
   },
-  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run start"
+  "completeMessage": "To get started:\n\n  cd {{destDirName}}\n  npm install\n  npm run start\n\nVue.js tutorials:\n\n  https://xpepermint.gitbooks.io/vue-js-cheatsheet/content/"
 }

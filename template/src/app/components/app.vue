@@ -1,8 +1,16 @@
 <template>
   <div id="app">
-    Hello World!
+    {{hello}}
   </div>
 </template>
+
+<style>
+export default {
+  data: {
+    hello: 'Hello World!'
+  }
+}
+</style>
 
 <style>
 body {
