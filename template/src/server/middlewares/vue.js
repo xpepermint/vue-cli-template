@@ -7,7 +7,7 @@ const express = require('express');
 exports.vueBundleRenderer = function (config) {
   let {bundleRenderer} = require('express-vue-builder');
 
-  return bundleRenderer(`${__dirname}/../../../build/bundle.js`);
+  return bundleRenderer(`${__dirname}/../../../dist/server/bundle.js`);
 }
 
 /*

@@ -1,6 +1,12 @@
 const express = require('express');
 
 /*
+* Returns a middleware for serving compiled public bundles.
+*/
+
+exports.bundles = express.static('dist/client');
+
+/*
 * Returns a middleware for serving static files.
 */
 

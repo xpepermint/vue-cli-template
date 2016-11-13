@@ -5,7 +5,7 @@ let options = build({
   env: 'production',
   mode: 'client',
   inputFilePath: `${__dirname}/../app/client-entry.js`,
-  outputPath: `${__dirname}/../../public`
+  outputPath: `${__dirname}/../../dist/client`
 });
 
 let builder = new VueBuilder(options);
