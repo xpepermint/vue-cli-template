@@ -7,7 +7,6 @@ exports.router = function (config) {
   });
 
   router.use('/', appRoutes.public);
-  router.use('/', appRoutes.bundles);
   router.use('/*', appRoutes.render);
 
   return router;

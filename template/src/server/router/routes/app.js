@@ -7,12 +7,6 @@ const express = require('express');
 exports.public = express.static('public');
 
 /*
-* Returns a middleware for serving pre-compiled application files.
-*/
-
-exports.bundles = express.static('dist/client');
-
-/*
 * Returns a middleware which renders the Vue.js application.
 */
 
