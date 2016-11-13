@@ -1,16 +1,16 @@
 const express = require('express');
 
 /*
-* Returns a middleware for serving precompiled files.
+* Returns a middleware for serving static files.
 */
 
 exports.public = express.static('public');
 
 /*
-* Returns a middleware for serving precompiled files.
+* Returns a middleware for serving pre-compiled application files.
 */
 
-exports.assets = express.static('dist/client');
+exports.bundles = express.static('dist/client');
 
 /*
 * Returns a middleware which renders the Vue.js application.

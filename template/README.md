@@ -8,15 +8,20 @@
 # install dependencies
 npm install
 
-# build for production (creates bundles)
+# build bundles for production
 npm run build
 
-# configure the environment (sets the production mode)
+# switch environment to production
 npm config set {{ name }}:env production
 
 # start the server
 npm start
 
-# use nodemon in development (reloads application when code changes)
+# use nodemon in development to automatically reload the server on changes
+npm install -g nodemon
 nodemon --exec npm start
 ```
+
+## Tutorials
+
+Vue.js tutorials: [Vue.js Cheatsheet](https://xpepermint.gitbooks.io/vue-js-cheatsheet/content/)

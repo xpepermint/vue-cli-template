@@ -1,6 +1,6 @@
 const express = require('express');
 const {vueHandler} = require('./middlewares/vue');
-const {router} = require('./middlewares/router');
+const {router} = require('./router');
 
 /*
 * HTTP server class.
@@ -13,10 +13,10 @@ exports.Server = class {
   */
 
   constructor(config) {
-    this._config = Object.assign(config);
+    this.config = Object.assign(config);
 
-    this._app = null;
-    this._server = null;
+    this.app = null;
+    this.server = null;
   }
 
   /*
@@ -25,18 +25,18 @@ exports.Server = class {
 
   listen() {
     return new Promise((resolve) => {
-      if (this._server) return this;
+      if (this.server) return this;
 
-      this._app = express();
-      this._app.use((req, res, next) => {
-        req.config = this._config;
+      this.app = express();
+      this.app.use((req, res, next) => {
+        req.config = this.config;
         next();
       });
-      this._app.use(vueHandler(this._config));
-      this._app.use(router(this._config));
+      this.app.use(vueHandler(this.config));
+      this.app.use(router(this.config));
 
-      let {serverPort, serverHost} = this._config;
-      this._server = this._app.listen(serverPort, serverHost, resolve);
+      let {serverPort, serverHost} = this.config;
+      this.server = this.app.listen(serverPort, serverHost, resolve);
     });
   }
 
@@ -46,12 +46,12 @@ exports.Server = class {
 
   close() {
     return new Promise((resolve) => {
-      if (!this._server) return this;
+      if (!this.server) return this;
 
-      this._server.close(resolve);
+      this.server.close(resolve);
 
-      this._server = null;
-      this._app = null;
+      this.server = null;
+      this.app = null;
     });
   }
 
