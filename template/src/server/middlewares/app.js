@@ -22,8 +22,7 @@ function publicServer () {
 
 function appServer (server) {
   return (req, res) => {
-    let ctx = {url: req.originalUrl};
-    let page = req.vue.renderToStream(ctx);
+    let page = req.vue.renderToStream();
     let {publicPath} = server.config;
 
     res.write(`<!DOCTYPE html>`);
