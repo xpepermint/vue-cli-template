@@ -31,9 +31,9 @@ class Server {
       if (this.server) return this;
 
       this.app = express();
+      this.app.use('/', vueServer(this));
       this.app.use('/', publicServer(this));
       this.app.use('/', bundlesServer(this));
-      this.app.use('/', vueServer(this));
       this.app.use('/*', appServer(this));
 
       let {serverPort, serverHost} = this.config;
