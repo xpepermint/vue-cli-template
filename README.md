@@ -14,7 +14,7 @@
 ### Usage
 
 This is a project template for [vue-cli](https://github.com/vuejs/vue-cli).
-> Note: Node v6+ required.
+> Note: Node v7+ required.
 
 ``` bash
 $ npm install -g vue-cli

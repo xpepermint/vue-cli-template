@@ -1,5 +1,8 @@
 const express = require('express');
-const {vueServer} = require('./middlewares/vue');
+const {
+  vueBundleRenderer,
+  vueDevServer
+} = require('./middlewares/vue');
 const {
   appServer,
   bundlesServer,
@@ -10,14 +13,14 @@ const {
 * HTTP server class.
 */
 
-class Server {
+exports.Server = class {
 
   /*
   * Class constructor.
   */
 
-  constructor (config) {
-    this.config = config;
+  constructor (settings) {
+    this.settings = settings;
     this.app = null;
     this.server = null;
   }
@@ -26,41 +29,44 @@ class Server {
   * Returns a promise which starts the server.
   */
 
-  listen () {
-    return new Promise((resolve) => {
-      if (this.server) return this;
+  async listen () {
+    if (this.server) return this;
 
-      this.app = express();
-      this.app.use('/', publicServer(this));
-      this.app.use('/', bundlesServer(this));
-      this.app.use('/', vueServer(this));
-      this.app.use('/*', appServer(this));
+    let isDev = this.settings.env === 'development';
 
-      let {serverPort, serverHost} = this.config;
+    this.app = express();
+    this.app.use(publicServer(this));
+    if (isDev) {
+      this.app.use(vueDevServer(this));
+    }
+    else {
+      this.app.use(bundlesServer(this));
+      this.app.use(vueBundleRenderer(this));
+    }
+    this.app.use('/*', appServer(this));
+
+    await new Promise((resolve) => {
+      let {serverPort, serverHost} = this.settings;
       this.server = this.app.listen(serverPort, serverHost, resolve);
     });
+
+    return this;
   }
 
   /*
   * Returns a promise which stops the server.
   */
 
-  close () {
-    return new Promise((resolve) => {
-      if (!this.server) return this;
+  async close () {
+    if (!this.server) return this;
 
+    await new Promise((resolve) => {
       this.server.close(resolve);
-      this.server = null;
-      this.app = null;
     });
+    this.server = null;
+    this.app = null;
+
+    return this;
   }
 
 }
-
-/*
-* Module interface.
-*/
-
-module.exports = {
-  Server
-};
