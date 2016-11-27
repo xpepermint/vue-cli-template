@@ -2,14 +2,19 @@
 
 > A simple Vue.js CLI template for client-side and server-side rendering.
 
-## Related Projects
+## Related
 
-* [vue-webpack](https://github.com/xpepermint/vue-webpack): Webpack configuration object generator for Vue.js.
+### Packages
+
 * [vue-builder](https://github.com/xpepermint/vue-builder): Server-side and client-side rendering for Vue.js.
 * [express-vue-builder](https://github.com/xpepermint/express-vue-builder): Vue.js server-side rendering middleware for Express.js.
 * [express-vue-dev](https://github.com/xpepermint/express-vue-dev): Vue.js development server middleware for Express.js.
 * [koa-vue-builder](https://github.com/kristianmandrup/koa-vue-builder): Vue.js server-side rendering middleware for Koa.js.
 * [koa-vue-dev](https://github.com/kristianmandrup/koa-vue-dev): Vue.js development server middleware for Koa.js.
+
+### Examples
+
+* [vue-example](https://github.com/xpepermint/vue-example): Vue.js example application
 
 ### Usage
 
