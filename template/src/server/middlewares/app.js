@@ -22,16 +22,17 @@ exports.bundlesServer = function () {
 
 exports.appServer = function ({settings}) {
   return (req, res) => {
-    let page = req.vue.renderToStream();
+    let isDev = settings.env === 'development';
     let {publicPath} = settings;
+    let page = req.vue.renderToStream();
 
     res.write(`<!DOCTYPE html>`);
     page.on('init', () => {
       res.write(`<html lang="en">`);
       res.write(`<head>`);
-      res.write(  `<meta charset="utf-8">`);
+      res.write(  `<meta charset="utf-8"/>`);
       res.write(  `<title>Example</title>`);
-      res.write(  `<link href="${publicPath}bundle.css" rel='stylesheet' type='text/css'>`);
+      res.write(  !isDev ? `<link href="${publicPath}bundle.css" rel='stylesheet' type='text/css'>` : '');
       res.write(`</head>`);
       res.write(`<body>`);
     });
