@@ -13,16 +13,14 @@ exports.publicServer = function () {
 * Returns the Vue.js server middleware.
 */
 
-exports.vueServer = function ({settings}) {
-  let isDev = settings.env === 'development';
+exports.vueServer = function ({config}) {
+  let isDev = config.env === 'development';
 
   if (isDev) { // development
     let {devServer} = require('express-vue-dev');
-    let webpack = require('../../config/webpack');
-    let options = Object.assign({}, settings, {env: 'development'});
     return devServer({
-      server: webpack('server', options), // register req.vue
-      client: webpack('client', options) // dynamically serve bundles
+      server: config.webpackServer,
+      client: config.webpackClient
     });
   }
   else { // production
@@ -39,11 +37,12 @@ exports.vueServer = function ({settings}) {
 * Returns a middleware which renders the Vue.js application.
 */
 
-exports.appServer = function ({settings}) {
+exports.appServer = function ({config}) {
   return (req, res) => {
-    let isDev = settings.env === 'development';
-    let page = req.vue.renderToStream();
-    let {publicPath} = settings;
+    let {publicPath, env} = config;
+    let isDev = env === 'development';
+    let ctx = {url: req.originalUrl};
+    let page = req.vue.renderToStream(ctx);
 
     res.write(`<!DOCTYPE html>`);
     page.on('init', () => {
@@ -60,6 +59,7 @@ exports.appServer = function ({settings}) {
       res.write(chunk);
     });
     page.on('end', () => {
+      res.write(  `<script>window.STATE = JSON.parse('${JSON.stringify(ctx.state)}')</script>`);
       res.write(  `<script src="${publicPath}bundle.js"></script>`);
       res.write(`</body>`);
       res.write(`</html>`);

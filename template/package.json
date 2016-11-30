@@ -2,16 +2,19 @@
   "name": "{{ name }}",
   "version": "1.0.0",
   "description": "{{ description }}",
+  "private": true,
   "main": "./src/index.js",
   "config": {
     "env": "development",
     "serverHost": "127.0.0.1",
-    "serverPort": 4444,
+    "serverPort": 3000,
     "publicPath": "/"
   },
   "scripts": {
-    "build": "node ./src/scripts/build.js client; node ./src/scripts/build.js server",
-    "start": "node --harmony ./src/scripts/start"
+    "build": "npm run build:client; npm run build:server",
+    "build:client": "node --harmony ./scripts/build.js client",
+    "build:server": "node --harmony ./scripts/build.js server",
+    "start": "node --harmony ./scripts/start"
   },
   "author": "Kristijan Sedlak (Xpepermint)",
   "license": "MIT",
