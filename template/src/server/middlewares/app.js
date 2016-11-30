@@ -50,6 +50,7 @@ exports.appServer = function ({settings}) {
       res.write(`<html lang="en">`);
       res.write(`<head>`);
       res.write(  `<meta charset="utf-8">`);
+      res.write(  `<meta name="viewport" content="width=device-width, initial-scale=1">`);
       res.write(  `<title>Example</title>`);
       res.write(  !isDev ? `<link href="${publicPath}bundle.css" rel='stylesheet' type='text/css'>` : '');
       res.write(`</head>`);
