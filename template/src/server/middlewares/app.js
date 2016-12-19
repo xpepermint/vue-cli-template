@@ -1,30 +1,29 @@
 const express = require('express');
-const {join} = require('path');
+const { join } = require('path');
 
 /*
-* Returns a middleware for serving static files.
-*/
+ * Returns a middleware for serving static files.
+ */
 
-exports.publicServer = function () {
+exports.publicServer = function() {
   return express.static('public');
 }
 
 /*
-* Returns the Vue.js server middleware.
-*/
+ * Returns the Vue.js server middleware.
+ */
 
-exports.vueServer = function ({config}) {
+exports.vueServer = function({ config }) {
   let isDev = config.env === 'development';
 
   if (isDev) { // development
-    let {devServer} = require('express-vue-dev');
+    let { devServer } = require('express-vue-dev');
     return devServer({
       server: config.webpackServer(),
       client: config.webpackClient()
     });
-  }
-  else { // production
-    let {bundleRenderer} = require('express-vue-builder');
+  } else { // production
+    let { bundleRenderer } = require('express-vue-builder');
     let bundlePath = join(__dirname, '..', '..', '..', 'dist', 'server', 'bundle.js');
     return [
       bundleRenderer(bundlePath), // register req.vue
@@ -34,24 +33,24 @@ exports.vueServer = function ({config}) {
 }
 
 /*
-* Returns a middleware which renders the Vue.js application.
-*/
+ * Returns a middleware which renders the Vue.js application.
+ */
 
-exports.appServer = function ({config}) {
+exports.appServer = function({ config }) {
   return (req, res) => {
-    let {publicPath, env} = config;
+    let { publicPath, env } = config;
     let isDev = env === 'development';
-    let ctx = {url: req.originalUrl};
+    let ctx = { url: req.originalUrl };
     let page = req.vue.renderToStream(ctx);
 
     res.write(`<!DOCTYPE html>`);
     page.on('init', () => {
       res.write(`<html lang="en">`);
       res.write(`<head>`);
-      res.write(  `<meta charset="utf-8">`);
-      res.write(  `<meta name="viewport" content="width=device-width, initial-scale=1">`);
-      res.write(  `<title>Example</title>`);
-      res.write(  !isDev ? `<link href="${publicPath}bundle.css" rel='stylesheet' type='text/css'>` : '');
+      res.write(`<meta charset="utf-8">`);
+      res.write(`<meta name="viewport" content="width=device-width, initial-scale=1">`);
+      res.write(`<title>Example</title>`);
+      res.write(!isDev ? `<link href="${publicPath}bundle.css" rel='stylesheet' type='text/css'>` : '');
       res.write(`</head>`);
       res.write(`<body>`);
     });
@@ -59,13 +58,12 @@ exports.appServer = function ({config}) {
       res.write(chunk);
     });
     page.on('end', () => {
-      res.write(  `<script>window.STATE = JSON.parse('${JSON.stringify(ctx.state)}')</script>`);
-      res.write(  `<script src="${publicPath}bundle.js"></script>`);
+      res.write(`<script src="${publicPath}bundle.js"></script>`);
       res.write(`</body>`);
       res.write(`</html>`);
       res.end();
     });
-    page.on('error', function (error) {
+    page.on('error', function(error) {
       console.error(error);
       res.status(500).send('Server Error');
     });
